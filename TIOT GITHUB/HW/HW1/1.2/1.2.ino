@@ -37,9 +37,12 @@ void serialPrintStatus(){
     } else if(inByte == 'G'){
       Serial.print("Green Status: ");
       Serial.println(greenLedState);
-    } else {
+    } else if(inByte != '\n'){
       Serial.println("Invalid Command");
     }
+//    } else {
+//      Serial.println("Invalid Command");
+//    }
   }
 }
 
