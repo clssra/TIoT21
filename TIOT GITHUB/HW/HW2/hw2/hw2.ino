@@ -226,43 +226,42 @@ void htANDac(){
   R = ((1023.0 / a) - 1) * R0;
   T  = (1 / ((log(R/R0) / B) + (1/T0))) - 273;
   
-  if(Serial.available() > 0){
+  if(Serial.available() > 0 ){
       ac_min = Serial.parseInt();
       ac_max = Serial.parseInt();
       ht_min = Serial.parseInt();
       ht_max = Serial.parseInt();
+      Serial.read();
+      if(ac_min!=0 || ac_max!=0 || ht_min!=0 || ht_max!=0){
+        modded = true;
+      }
       
-    acPerc = conditioning(T, ac_min, ac_max, ac_max - ac_min, FAN_PIN, false);
-    htPerc = conditioning(T, ht_min, ht_max, ht_max-ht_min, LED_PIN, true);
-
-    /*
-    Serial.println(acPerc);
-    Serial.println(htPerc);
-    Serial.println(ac_min);
-    Serial.println(ac_max);
-    Serial.println(ht_min);
-    Serial.println(ht_max);
-    */
-    modded = true;
-    
-  } else if(ORflag == true && modded == false){
+  }
+  if(ORflag == true && modded == false){
     ac_min = 26;
     ac_max = 28;
     ht_min = 17;
     ht_max = 20;
-
-    acPerc = conditioning(T, ac_min, ac_max, ac_max - ac_min, FAN_PIN, false);
-    htPerc = conditioning(T, ht_min, ht_max, ht_max-ht_min, LED_PIN, true);
- 
-  } else if(ORflag == false && modded == false){
+  }
+  else if(ORflag == false && modded == false){
     ac_min = 25;
     ac_max = 30;
     ht_min = 15;
     ht_max = 20;
-    
+  }
+      
     acPerc = conditioning(T, ac_min, ac_max, ac_max - ac_min, FAN_PIN, false);
     htPerc = conditioning(T, ht_min, ht_max, ht_max-ht_min, LED_PIN, true);
-  }
+
+    
+//    Serial.println(acPerc);
+//    Serial.println(htPerc);
+//    Serial.println(ac_min);
+//    Serial.println(ac_max);
+//    Serial.println(ht_min);
+//    Serial.println(ht_max);
+    
+
 
   if(acPerc > 0){
     fan_on = true;
