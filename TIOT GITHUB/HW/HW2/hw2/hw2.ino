@@ -21,8 +21,8 @@ volatile int clap_count = 0;
 volatile int count_clap_noise = 0;
 
 //noise
-const unsigned long sound_interval = 2 * 1e03; //cambia in 60 * 1e03
-const unsigned long timeout_sound = 10 * 1e03; //cambia in 3600 * 1e03
+const unsigned long sound_interval = 60 * 1e03; 
+const unsigned long timeout_sound = 3600 * 1e03; 
 volatile int timez[10];
 volatile int sum = 0;
 volatile int time_sound_count=0;
@@ -51,7 +51,7 @@ volatile float T;
 //pir
 volatile bool presence_pir = false;
 volatile unsigned long  prev_time_pir = 0;
-const unsigned long timeout_pir = 10 * 1e03; //cambia in ....
+const unsigned long timeout_pir = 1800 * 1e03; 
 volatile unsigned long time_pir;
 volatile int count_pir = 0;
 volatile bool flag_pir = false;
@@ -81,7 +81,7 @@ void checkPir(){
 
   time_pir = millis();
   
-  if(time_pir - prev_time_pir >= timeout_pir || presence_pir == true ){ //da cambiare in 30 minn  
+  if(time_pir - prev_time_pir >= timeout_pir || presence_pir == true ){  
 
     if(time_pir - prev_time_pir >= timeout_pir){
       flag_pir = false;
@@ -134,7 +134,7 @@ void checkSound(){
   
   checkSoundInterval();
   
-  if(time_sound - prev_time_sound >= timeout_sound || presence_noise == true){ //da cambiare in 60 minn
+  if(time_sound - prev_time_sound >= timeout_sound || presence_noise == true){ 
 
     if(time_sound - prev_time_sound >= time_sound && presence_noise == false){
        flag_sound=false;
