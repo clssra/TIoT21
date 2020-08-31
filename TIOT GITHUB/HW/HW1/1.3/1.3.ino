@@ -6,12 +6,20 @@ const int PIR_PIN = 7;
 volatile int count = 0;
 
 
-void checkPresence(){  
+//void checkPresence(){  
+//  count++;
+//  digitalWrite(LED_PIN, HIGH);
+//   
+//  delay(500);
+//  digitalWrite(LED_PIN, LOW); 
+//}
+
+int ledState=LOW;
+
+void checkPresence(){
+  ledState=!ledState;  
   count++;
-  digitalWrite(LED_PIN, HIGH);
-   
-  delay(500);
-  digitalWrite(LED_PIN, LOW); 
+  digitalWrite(LED_PIN, ledState);
 }
 
 void setup() {
@@ -22,7 +30,7 @@ void setup() {
   pinMode(PIR_PIN, INPUT);
   pinMode(LED_PIN, OUTPUT);
   
-  attachInterrupt(digitalPinToInterrupt(PIR_PIN), checkPresence, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PIR_PIN), checkPresence, CHANGE);
   
 }
 
