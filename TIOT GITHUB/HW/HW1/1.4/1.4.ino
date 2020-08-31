@@ -28,7 +28,7 @@ void loop() {
       Serial.print("Current Speed: ");
       Serial.println(current_speed);
       
-    } else {
+    } else if(inByte != '\n'){
       if(current_speed + 15 > 255){
         Serial.println("Already at max speed");
       } else if (current_speed - 15 < 0){
