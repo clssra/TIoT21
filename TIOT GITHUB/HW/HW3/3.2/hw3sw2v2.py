@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 'tools.sessions.on': True
                 }
     }
-    cherrypy.tree.mount(Convertor(), '/converter', conf)
+    cherrypy.tree.mount(Convertor(), '/', conf)
     cherrypy.config.update({'server.socket_host': '0.0.0.0'})
     cherrypy.config.update({'server.socket_port': 8080})
     cherrypy.engine.start()
