@@ -7,7 +7,7 @@
 int INT_LED_PIN = 13;
 int LED_PIN = 10;
 int TEMP_PIN = A1;
-//const String url = "http://127.0.0.1:8080";
+const String url = "http://172.20.10.2:8080";
 
 BridgeServer server;
 const int capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 40;
@@ -35,7 +35,7 @@ void loop() {
    process();
 
 
-  delay(2000);
+  delay(20000);
 
   
 
@@ -58,7 +58,6 @@ void process(){
 
 String senMlEncode(String res, float v, String unit){
   doc_snd.clear();
-  /*
   doc_snd["bn"] = "Yun";
 
   doc_snd["e"][0]["n"] = res;
@@ -71,12 +70,6 @@ String senMlEncode(String res, float v, String unit){
     doc_snd["e"][0]["u"] = (char*)NULL;
   }
 
-  */
-  
-  doc_snd["ID"] = "arduinoTemp";
-  doc_snd["EndPoints"] = "dslkugfvdibcskdjalshfbdw";
-  doc_snd["AvailResurces"] = res;
-  
   
   String output;
   serializeJson(doc_snd, output);
@@ -95,7 +88,7 @@ int postRequest(String data){
   p.addParameter("POST");
   p.addParameter("-d");
   p.addParameter(data);
-  p.addParameter("http://192.168.1.95:8080/devices");
+  p.addParameter(url+"/devices");
   p.run();
  
  
