@@ -92,9 +92,7 @@ int postRequest(String data){
   p.run();
  
  
-  
- // p.begin("curl -H \"Content-Type: application/json\" -X POST -d '{\"json_string\":\"yeyyyy\"}' http://127.0.0.1:8080");
- // Serial.println("-H \"Content-Type: application/json\" -X POST -d '{\"json_string\":\"yeyyyy\"}' http://127.0.0.1:8080");
+
 
   return p.exitValue();
 }
