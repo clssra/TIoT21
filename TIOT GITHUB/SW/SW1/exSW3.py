@@ -48,7 +48,7 @@ class Convertor():
             else:
                 return 'Wrong param value: use "C", "K" or "F".'
             
-            json_body['newValues'] = newValues
+        json_body['newValues'] = newValues
     
 
         return json.dumps(json_body)
