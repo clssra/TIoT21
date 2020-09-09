@@ -26,18 +26,13 @@ class publisher:
 	def myConnect (self, paho_mqtt, userdata, flags, rc):
 		print ("Connected to %s with result code: %d" % (self.broker, rc))
 
-devices={}
 
 if __name__=='__main__':
 	mqttc = publisher("IOT_SERVICES")
 	mqttc.start()
 	while True:
-		
 		ID=random.randint(0,10)
-		endpoints='prova_v'+str(ID)
-		resurces='astrolabo gravitazionale mk'+str(ID)
 		timestamp=time.time()
-		devices.update({ID:{'EndPoints':endpoints,'AvailResurces':resurces,"TimeStamp":timestamp}})
 		data={'bn':ID, 'e':[{'n':'lightning' ,'u':'amph','t':timestamp,'v':ID*10},{'n':'lightning' ,'u':'amph','t':timestamp,'v':ID*20}]}
 		mqttc.myPublish('iot/21/devices',json.dumps(data))
 		time.sleep(6)
