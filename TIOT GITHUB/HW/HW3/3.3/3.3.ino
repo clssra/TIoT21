@@ -18,10 +18,7 @@ void setLedValue(const String& topic, const String& subtopic, const String& mess
   }
 
   int value;
-  String output;
-  //serializeJson(doc_snd, output);
-  //Serial.println(output);
-  
+
   if(doc_rec["e"][0]["n"] == "led"){
     //controlli 
     value = doc_rec["e"][0]["v"];
@@ -31,7 +28,6 @@ void setLedValue(const String& topic, const String& subtopic, const String& mess
 }
 
 void setup() {
-  //:::::BOH
   Serial.begin(9600);
   while(!Serial);
   Serial.println("");
@@ -73,7 +69,6 @@ String senMlEncode(String res, float v, String unit){
 
 void loop() {
 
-
   float T0 = 298;
   float R0 = 100000;
   float B = 4275;
@@ -82,9 +77,9 @@ void loop() {
   float T  = (1 / ((log(R/R0) / B) + (1/T0))) - 273;
 
   String message = senMlEncode("temperature", T, "Cel");
-  mqtt.monitor();
   mqtt.publish(my_base_topic + String("/temperature"), message);
-
+  mqtt.monitor();
+  
   delay(1000);
 
 }
