@@ -75,14 +75,14 @@ String senMlEncode(String res, float v, String unit){
   //doc_snd["e"][3]["u"] = unit;
   
   if(unit != ""){
-    doc_snd["e"][3]["u"] = unit;
+    doc_snd["e"][0]["u"] = unit;
   } else {
-    doc_snd["e"][3]["u"] = (char*)NULL;
+    doc_snd["e"][0]["u"] = (char*)NULL;
   }
   
   doc_snd["e"][0]["n"] = res;
-  doc_snd["e"][1]["t"] = millis();
-  doc_snd["e"][2]["v"] = v;
+  doc_snd["e"][0]["t"] = millis();
+  doc_snd["e"][0]["v"] = v;
   
   String output;
   serializeJson(doc_snd, output);
