@@ -232,7 +232,7 @@ void htANDac(){
       ht_min = Serial.parseInt();
       ht_max = Serial.parseInt();
       Serial.read();
-      if(ac_min!=0 || ac_max!=0 || ht_min!=0 || ht_max!=0){
+      if(ac_min!=0 && ac_max!=0 && ht_min!=0 && ht_max!=0){
         modded = true;
       }
       
