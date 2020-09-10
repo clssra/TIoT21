@@ -50,9 +50,9 @@ void process(){
     float R = ((1023.0 / a) - 1) * R0;
     float T  = (1 / ((log(R/R0) / B) + (1/T0))) - 273;
     
-    String kk = senMlEncode(F("temperature"), T, F("Cel"));
+    String tempMessage = senMlEncode(F("temperature"), T, F("Cel"));
 
-    Serial.println(postRequest(kk));
+    Serial.println(postRequest(tempMessage));
     
  }
 
